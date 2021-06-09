@@ -1,0 +1,24 @@
+<ng-template [ngIf]="blogSettings">
+  <div *ngIf="postList">
+      <div *ngFor="let post of postList.posts; first as isFirst; index as i;" style="margin-bottom: 20px" class="{{i? 'none':'first-post'}}">
+        <div class="row">
+          <div class="col-md-2" >
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">{{ toDate(post.published) }}</li>
+                <li class="breadcrumb-item"><a
+                    href="?author={{post.author.appUserName}}">{{post.author.displayName}}</a></li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-md-10" >
+            <h2>{{ post.title }}</h2>
+            <article>
+              <div [innerHTML]="post.description"></div>
+            </article>
+            <a href="posts/{{post.slug}}" class="btn btn-secondary">Read more</a>
+          </div>  
+        </div>
+    </div>
+  </div>
+</ng-template>
